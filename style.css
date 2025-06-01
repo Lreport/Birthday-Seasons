@@ -1,0 +1,452 @@
+/* Estilos gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #faf5e8;
+    transition: background-color 1.5s ease;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    min-height: 500px;
+    background-color: #faf7ee;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px #0000001a;
+    overflow: hidden;
+    padding: 20px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.background-theme {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 15px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+/* Seção de estações */
+.seasons-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.season-cards {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+}
+
+.season-card {
+    position: relative;
+    width: 23%;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px #00000099;
+    transition: transform 0.5s ease;
+}
+
+/* Ajuste para mostrar cada estação corretamente */
+#primavera-card {
+    background-image: url('images/primavera.png');
+    background-size: cover; /* Ajustado para imagem individual */
+    background-position: center; /* Centraliza a imagem */
+    aspect-ratio: 1/2;
+}
+
+#verao-card {
+    background-image: url('images/verao.png');
+    background-size: cover; /* Ajustado para imagem individual */
+    background-position: center; /* Centraliza a imagem */
+    aspect-ratio: 1/2;
+}
+
+#outono-card {
+    background-image: url('images/outono.png');
+    background-size: cover; /* Ajustado para imagem individual */
+    background-position: center; /* Centraliza a imagem */
+    aspect-ratio: 1/2;
+}
+
+#inverno-card {
+    background-image: url('images/inverno.png');
+    background-size: cover; /* Ajustado para imagem individual */
+    background-position: center; /* Centraliza a imagem */
+    aspect-ratio: 1/2;
+}
+
+.season-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #00000099;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Seção de input */
+.input-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+label {
+    font-size: 1rem;
+    color: #555;
+}
+
+input[type="date"] {
+    padding: 8px 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    width: 150px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="date"]:focus {
+    border-color: #4CAF50;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Seção de resultado */
+.result-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s, transform 0.8s;
+    display: none;
+}
+
+.result-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex;
+}
+
+.single-season-container {
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.single-season-container .season-card {
+    width: 100%;
+    aspect-ratio: 1/2;
+    transition: transform 1s ease;
+}
+
+.single-season-container.active .season-card {
+    transform: scale(0.85);
+}
+
+.season-result {
+    text-align: center;
+    padding: 10px;
+}
+
+.season-result h2 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    transition: color 0.5s;
+}
+
+.season-result p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Estilos específicos para cada estação */
+/* Primavera */
+.primavera-theme {
+    background: linear-gradient(135deg, #ffb4d2, #a1ffa1);
+}
+
+.primavera-text {
+    color: #e91e63;
+}
+
+/* Verão */
+.verao-theme {
+    background: linear-gradient(135deg, #fff8b6, #9ad3e6);
+}
+
+.verao-text {
+    color: #009688;
+}
+
+/* Outono */
+.outono-theme {
+    background: linear-gradient(135deg, #ffe4b5cc, #d2691ecc);
+}
+
+.outono-text {
+    color: #ff5722;
+}
+
+/* Inverno */
+.inverno-theme {
+    background: linear-gradient(135deg, #f0f8ffcc, #b0c4decc);
+}
+
+.inverno-text {
+    color: #3f51b5;
+}
+
+/* Theme Switch */
+.theme-switch-wrapper {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
+
+/* From Uiverse.io by andrew-demchenk0 */ 
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 64px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #73C0FC;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    left: 2px;
+    bottom: 2px;
+    z-index: 2;
+    background-color: #e8e8e8;
+    transition: .4s;
+}
+
+.sun svg {
+    position: absolute;
+    top: 6px;
+    left: 36px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+}
+
+.moon svg {
+    fill: #73C0FC;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+}
+
+.sun svg {
+    animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.moon svg {
+    animation: tilt 5s linear infinite;
+}
+
+@keyframes tilt {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-10deg);
+    }
+    75% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.input:checked + .slider {
+    background-color: #183153;
+}
+
+.input:focus + .slider {
+    box-shadow: 0 0 1px #183153;
+}
+
+.input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+/* Tema escuro */
+body.dark-theme {
+    background-color: #121212;
+}
+
+.dark-theme .container {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px #0000004d;
+}
+
+.dark-theme h1,
+.dark-theme label {
+    color: #ffffff;
+}
+
+.dark-theme .season-result p {
+    color: #ffffff;
+}
+
+.dark-theme input[type="date"] {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+        min-height: auto;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .season-cards {
+        flex-wrap: wrap;
+    }
+
+    .season-card {
+        width: 48%;
+        margin-bottom: 10px;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    input[type="date"] {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .season-result h2 {
+        font-size: 1.5rem;
+    }
+
+    .season-result p {
+        font-size: 0.9rem;
+    }
+    
+    .theme-switch-wrapper {
+        top: 10px;
+        right: 10px;
+    }
+}
